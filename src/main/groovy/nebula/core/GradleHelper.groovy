@@ -1,7 +1,7 @@
 package nebula.core
 
 import com.google.common.io.Files
-import org.apache.commons.lang.reflect.FieldUtils
+import org.apache.commons.lang3.reflect.FieldUtils
 import org.gradle.api.Project
 import org.gradle.api.ProjectEvaluationListener
 import org.gradle.api.internal.project.AbstractProject
