@@ -14,7 +14,8 @@ Guidelines:
 * Development should be done via pull requests, which can be done on feature branches
 * Pull requests should be review by someone who isn't the author
 
-Creating a new plugin:
+Creating a new plugin
+---------------------
 * Create GitHub repo under nebula-plugin, fork gradle-nothing-plugin
 * Create a contrib-REPO team for repo
 * Add repo to general contrib team
@@ -22,6 +23,15 @@ Creating a new plugin:
 * Create Bintray module
 * Edit with Website, Issue Tracker, Version Control, and GitHub repo.(e.g. https://bintray.com/nebula/gradle-plugins/gradle-nothing-plugin/edit?form=general)
 * Request jcenter() linked, and OJO hosting
+
+
+Build Order
+----------------
+Since the plugin-plugin uses these plugins, there's some really screwy bootstrapping that has to happen. We need a better way, but the core plugins
+will eventually settle down and this won't happen often. But when it does it should be clear what the steps are:
+* Release nebula-test, it has no dependencies and the old nebula-plugin-plugin that it uses should be adequate to get it out
+* Release nebula-plugin-plugin with a dependency (via the latest conf) to the released nebula-test
+
 
 Nebula Core
 ===========
