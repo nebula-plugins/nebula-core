@@ -14,6 +14,15 @@ Guidelines:
 * Development should be done via pull requests, which can be done on feature branches
 * Pull requests should be review by someone who isn't the author
 
+Creating a new plugin:
+* Create GitHub repo under nebula-plugin, fork gradle-nothing-plugin
+* Create a contrib-REPO team for repo
+* Add repo to general contrib team
+* Add hook via "WebHook URLs" and configure it with https://netflixoss.ci.cloudbees.com/github-webhook/
+* Create Bintray module
+* Edit with Website, Issue Tracker, Version Control, and GitHub repo.(e.g. https://bintray.com/nebula/gradle-plugins/gradle-nothing-plugin/edit?form=general)
+* Request jcenter() linked, and OJO hosting
+
 Nebula Core
 ===========
 This specific project holds some "helper" classes for testing and interacting with Gradle. It's not meant to get too big, 
