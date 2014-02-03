@@ -5,25 +5,41 @@ The nebula-plugins organization was setup to facilitate the generation, governan
 Guidelines:
 * Should be named gradle-*-plugin. Can use nebula-*-plugin for opinionated plugins.
 * Plugin’s name will be the asterisk above, except for nebula-*-plugin’s which are named nebula-*
-* Should have a branch and releases for major Gradle versions
-* Version prefix needs to be the short version of Gradle, e.g. 1.8.0 for Gradle 1.8 support
-* All plugins will apply a core plugin to centralize publishing
-* Plugins will publish to bintray.com
+* Should have a branch and releases for major Gradle versions, optional
+  * Version prefix needs to be the short version of Gradle, e.g. 1.8.0 for Gradle 1.8 support
+* All plugins will apply the gradle-plugin-plugin to centralize publishing
+  * Plugins will publish to bintray.com
 * Plugins will have Cloudbee Jenkins jobs for building and releasing, to allow anyone to publish a release.
 * Plugins will use the Apache 2.0 license, enforced via license plugin
 * Development should be done via pull requests, which can be done on feature branches
-* Pull requests should be review by someone who isn't the author
+* Pull requests should be reviewed by someone who isn't the author
 
 Creating a new plugin
 ---------------------
-* Create GitHub repo under nebula-plugin, fork gradle-nothing-plugin
-* Create a contrib-REPO team for repo
-* Add repo to general contrib team
-* Add hook via "WebHook URLs" and configure it with https://netflixoss.ci.cloudbees.com/github-webhook/
+* Create GitHub repo under nebula-plugins, aka REPO
+  * Add hook via Settings->"WebHook URLs" and configure it with https://netflixoss.ci.cloudbees.com/github-webhook/, click Update Settings
+  * Create a contrib-REPO team for repo, from https://github.com/orgs/nebula-plugins/teams, select Write Acces then click Create team
+  * Add REPO repo to the contrib-REPO
+  * Add REPO to general contrib team, https://github.com/orgs/nebula-plugins/teams/contrib
+* Locally, git clone git@github.com:nebula-plugins/gradle-nothing-plugin.git gradle-MYPLUGIN-plugin
+  * cd gradle-MYPLUGIN-plugin
+  * rm -fr .git
+  * git init
+  * git remote add origin git@github.com:nebula-plugins/gradle-MYPLUGIN-plugin.git
+  * Change files
+    * Wipe out CHANGELOG.md
+    * Change README.md
+    * Reset version in gradle.properties
+    * Edit build.gradle, update dependencies, description, etc
+    * Rename src/main/resources/META-INF/gradle-plugins/nebula-project.properties
+  * git push origin master
 * Create Bintray module
-* Edit with Website, Issue Tracker, Version Control, and GitHub repo.(e.g. https://bintray.com/nebula/gradle-plugins/gradle-nothing-plugin/edit?form=general)
-* Request jcenter() linked, and OJO hosting
-
+  * From https://bintray.com/nebula/gradle-plugins, click Add Package, name it 
+  * Set name, description, license (to Apache-2.0), tags (gradle, plugin, nebula), website (https://github.com/nebula-plugins/REPO), issues (https://github.com/nebula-plugins/REPO/issues), version control (https://github.com/nebula-plugins/gradle-info-plugin/issues), and make download stats public.
+  * On next page, fill in Github repo, nebula-plugins/REPO, save changes
+  * On next page, fill in GitHub release notes file, CHANGELOG.md, save changes
+  * From https://bintray.com/nebula/gradle-plugins/REPO, Click "Add to JCenter". Click "Host my snapshots..." and fill in group id as com.netflix.nebula, click Send. This will take a day to process.
+* Setup Cloudbees
 
 Build Order
 ----------------
