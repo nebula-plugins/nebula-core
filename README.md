@@ -35,11 +35,17 @@ Creating a new plugin
   * git push origin master
 * Create Bintray module
   * From https://bintray.com/nebula/gradle-plugins, click Add Package, name it 
-  * Set name, description, license (to Apache-2.0), tags (gradle, plugin, nebula), website (https://github.com/nebula-plugins/REPO), issues (https://github.com/nebula-plugins/REPO/issues), version control (https://github.com/nebula-plugins/gradle-info-plugin/issues), and make download stats public.
-  * On next page, fill in Github repo, nebula-plugins/REPO, save changes
+  * Set name, description, license (to Apache-2.0), tags (gradle, plugin, nebula), website (https://github.com/nebula-plugins/REPO), issues (https://github.com/nebula-plugins/REPO/issues), version control (https://github.com/nebula-plugins/REPO), and make download stats public.
+  * On next page, fill in Github repo, _nebula-plugins/REPO_, save changes
   * On next page, fill in GitHub release notes file, CHANGELOG.md, save changes
   * From https://bintray.com/nebula/gradle-plugins/REPO, Click "Add to JCenter". Click "Host my snapshots..." and fill in group id as com.netflix.nebula, click Send. This will take a day to process.
 * Setup Cloudbees
+  * SEED job should make the appropriate jobs, ensure that it ran correctly: https://netflixoss.ci.cloudbees.com/job/nebula-plugins/job/SEED-nebula-plugins/
+  * You should see REPO-snapshots, REPO-pull-requests, REPO-release as jobs in https://netflixoss.ci.cloudbees.com/job/nebula-plugins/
+  * Do a `git push` to ensure push changes are picked up, job should queue immediately.
+Adding Admins
+---------------
+* from https://bintray.com/nebula/organization/edit, add member.
 
 Build Order
 ----------------
