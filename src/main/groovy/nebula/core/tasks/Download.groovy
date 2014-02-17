@@ -62,6 +62,8 @@ class Download extends ConventionTask {
 
     @TaskAction
     doDownload() {
+        // TODO Use a smarter download library like httpclient
+        // TODO Show progress markers
         logger.info("Downloading ${getDownloadUrl()} to ${getDestinationFile()}")
         getDestinationFile().bytes = new URL(getDownloadUrl()).bytes
         logger.info("Downloaded ${getDestinationFile().size()} bytes")
