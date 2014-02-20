@@ -34,3 +34,5 @@ plugins.withType(NebulaBaseMavenPublishingPlugin) {
         }
     }
 }
+
+createWrapper.gradleVersion = '1.10'
