@@ -21,10 +21,15 @@ class Unzip extends Copy {
         this.fileOperations = fileOperations
 
         // Destination dir should be set for up-to-date checks. User has to overwrite to keep using the same output
-        conventionMapping('destinationDir') {
-            destinationDir = temporaryFileProvider.createTemporaryDirectory('unzip', 'extracted')
-            return destinationDir
+        // This is set now, but the user can easily override.
+        into {
+            temporaryFileProvider.createTemporaryDirectory('unzip', 'extracted')
         }
+
+//        conventionMapping('destinationDir') {
+//            destinationDir = temporaryFileProvider.createTemporaryDirectory('unzip', 'extracted')
+//            return destinationDir
+//        }
     }
 
     Unzip from(File zipFile) {
