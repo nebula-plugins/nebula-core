@@ -7,6 +7,8 @@ import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
 
+import javax.inject.Inject
+
 /**
  * downloadUrl or downloadBase need to be provided. downloadFileName is required if downloadBase is provided. If downloadUrl
  * is provided, then downloadFileName is optional but can be used to control the destination file name. If downloadFileName
@@ -38,7 +40,7 @@ class Download extends ConventionTask {
 
     String downloadUrl
 
-
+    @Inject
     Download(TemporaryFileProvider temporaryFileProvider) {
         super()
         conventionMapping('destinationDir') {
@@ -53,7 +55,7 @@ class Download extends ConventionTask {
             return destinationFile
         }
         conventionMapping('downloadUrl') {
-            "${getDownloadBase()}/${getDownloadFileName()}"
+            "${getDownloadBase()}/${getDownloadFileName()}".toString() // Can't return a GString
         }
 //        outputs.upToDateWhen {
 //            // TODO Use httpclient or such to calculate up-to-date
