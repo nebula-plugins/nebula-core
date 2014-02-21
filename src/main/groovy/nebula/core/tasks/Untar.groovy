@@ -5,6 +5,8 @@ import org.gradle.api.internal.file.DefaultFileOperations
 import org.gradle.api.internal.file.TemporaryFileProvider
 import org.gradle.api.tasks.Copy
 
+import javax.inject.Inject
+
 /**
  * Task to take File or Task inputs, then untar them implicitly
  */
@@ -12,15 +14,17 @@ class Untar extends Copy {
 
     DefaultFileOperations fileOperations
 
+    @Inject
     Untar(DefaultFileOperations fileOperations, TemporaryFileProvider temporaryFileProvider) {
         super()
         this.fileOperations = fileOperations
-//        conventionMapping('destinationDir') {
-//            temporaryFileProvider.createTemporaryDirectory('untar', 'extracted')
-//        }
 
-        // Destination dir should be set for up-to-date checks. User can overwrite.
-        into { temporaryFileProvider.createTemporaryDirectory('untar', 'extracted') }
+        // Destination dir should be set for up-to-date checks. User has to overwrite to keep using the same output
+        conventionMapping('destinationDir') {
+            destinationDir = temporaryFileProvider.createTemporaryDirectory('untar', 'extracted')
+            return destinationDir
+        }
+
     }
 
     Untar from(File tarFile) {
