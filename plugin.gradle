@@ -1,36 +1,20 @@
 buildscript {
     repositories { jcenter() }
-    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:1.9.3' }
+    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:1.9.+' }
 }
 
 description 'Common classes that plugins might need'
 apply plugin: 'nebula-plugin' // applying to even nebula-core since it had 99% of the characterizes of a nebula-plugin
 
+contacts {
+    'justin@halfempty.org' {
+        moniker 'Justin Ryan'
+        github 'quidryan'
+    }
+}
+
 dependencies {
     compile 'org.apache.commons:commons-lang3:3.2.1'
 }
 
-def pomConfig = {
-    inceptionYear '2014'
-
-    developers {
-        developer {
-            id 'quidryan'
-            name 'Justin Ryan'
-            email 'justin@halfempty.org'
-            roles{
-                role 'Developer'
-            }
-            timezone '-8'
-        }
-    }
-}
-
-import nebula.plugin.publishing.maven.NebulaBaseMavenPublishingPlugin
-plugins.withType(NebulaBaseMavenPublishingPlugin) {
-    withMavenPublication {
-        pom.withXml {
-            asNode().children().last() + pomConfig
-        }
-    }
-}
+compileWrapper.gradleVersion='1.9'
