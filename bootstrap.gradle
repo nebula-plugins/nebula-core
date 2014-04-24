@@ -40,9 +40,9 @@ dependencies {
     compile gradleApi()
     compile localGroovy()
     compile 'org.apache.commons:commons-lang3:3.2.1'
-    testCompile 'com.netflix.nebula:nebula-test:1.0-SNAPSHOT'
+    testCompile 'com.netflix.nebula:nebula-test:1.11.0'
 }
 
 task createWrapper(type: Wrapper) {
-    gradleVersion = '1.9'
+    gradleVersion = '1.11'
 }
