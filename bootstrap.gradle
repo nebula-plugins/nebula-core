@@ -1,16 +1,11 @@
 import org.gradle.api.publish.maven.MavenPublication
 
 buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
+    repositories { jcenter() }
+    dependencies { classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3' }
 }
 
-repositories {
-    mavenLocal()
-    jcenter()
-}
+repositories { jcenter() }
 
 apply plugin: 'groovy'
 apply plugin: 'idea'
@@ -26,6 +21,22 @@ publishing {
         }
     }
 }
+
+apply plugin: 'bintray'
+def packageName = name
+bintray {
+    user = bintrayUser
+    key = bintrayKey
+    publications = ['mavenJava']
+    pkg {
+        repo = 'gradle-plugins'
+        userOrg = 'nebula'
+        name = packageName
+        licenses = ['Apache-2.0']
+    }
+    // Will have to manually publish on bintray.com
+}
+bintrayUpload.dependsOn(build)
 
 task install(dependsOn: 'publishMavenJavaPublicationToMavenLocal') << {
     logger.info "Installed $project.name"
