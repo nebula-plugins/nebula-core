@@ -2,19 +2,14 @@ package nebula.core.tasks
 
 import nebula.test.IntegrationSpec
 import nebula.test.functional.ExecutionResult
-import nebula.test.functional.internal.launcherapi.LauncherExecutionResult
 import spock.lang.Shared
 
-class UnzipLauncherSpec extends IntegrationSpec {
+class UnzipIntegrationSpec extends IntegrationSpec {
     @Shared
     URL zipUrl = getClass().getClassLoader().getResource("test.zip");
 
     @Shared
     def url = zipUrl.toURI().resolve(".").toURL()
-
-    def setup() {
-        useToolingApi = false
-    }
 
     def 'confirm task runs'() {
 
@@ -35,10 +30,6 @@ class UnzipLauncherSpec extends IntegrationSpec {
 
         then:
         result.wasExecuted(':download')
-        def project = ((LauncherExecutionResult) result).gradle.getRootProject()
-        def unzip = project.tasks.getByName('unzip')
-        unzip.source
-        unzip.destinationDir.exists()
     }
 
     def 'destination dir can be overridden'() {
@@ -56,14 +47,13 @@ class UnzipLauncherSpec extends IntegrationSpec {
             """.stripIndent()
 
         when:
-        ExecutionResult result = runTasksSuccessfully('unzip')
+        runTasksSuccessfully('unzip')
 
         then:
-        def project = result.gradle.getRootProject()
-        def unzipTask = project.tasks.getByName('unzip')
-        def output = unzipTask.destinationDir
-        output.name == 'unzipped'
-
+        File buildDir = new File(projectDir, 'build')
+        File destDir = new File(buildDir, 'unzipped')
+        destDir.exists()
+        destDir.listFiles().toList()*.name == ['test-1.0.0']
     }
 
     def 'task runs'() {
@@ -80,23 +70,19 @@ class UnzipLauncherSpec extends IntegrationSpec {
             """.stripIndent()
 
         when:
-        def result = runTasksSuccessfully('unzip')
+        runTasksSuccessfully('unzip')
 
         then:
-        def project = result.gradle.getRootProject()
-        def unzipDir = new File(project.buildDir, 'unzipped')
-        unzipDir
+        File buildDir = new File(projectDir, 'build')
+        File destDir = new File(buildDir, 'unzipped')
+        destDir.exists()
 
-        unzipDir.listFiles().length == 1
-        def firstDir = new File(unzipDir, 'test-1.0.0')
+        destDir.listFiles().toList()*.name == ['test-1.0.0']
+        def firstDir = new File(destDir, 'test-1.0.0')
         firstDir
 
         def readmeFile = new File(firstDir, 'README.md')
         readmeFile
         readmeFile.text.contains("Testing")
-
-        def unzipTask = project.tasks.getByName('unzip')
-        unzipTask.firstDirectory().name == 'test-1.0.0'
-
     }
 }
