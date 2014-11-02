@@ -83,7 +83,7 @@ class GradleHelper {
     /**
      * TODO Not done.
      *
-     * Create a detached Configuration which uses it's own resolvers, instead of inheiriting them from the project
+     * Create a detached Configuration which uses it's own resolvers, instead of inheriting them from the project
      *
      * @param templateResolver
      * @param dependencies
