@@ -5,7 +5,7 @@ import org.gradle.api.Action
 import org.gradle.api.internal.file.CopyActionProcessingStreamAction
 import org.gradle.api.internal.file.copy.*
 import org.gradle.api.tasks.WorkResult
-import org.gradle.internal.nativeplatform.services.FileSystems
+import org.gradle.internal.nativeintegration.services.FileSystems
 import org.gradle.internal.reflect.DirectInstantiator
 import org.gradle.internal.reflect.Instantiator
 

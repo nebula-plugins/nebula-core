@@ -15,9 +15,9 @@ contacts {
 
 dependencies {
     compile 'org.apache.commons:commons-lang3:3.2.1'
-    testCompile('com.netflix.nebula:nebula-test:2.0.+') {
+    testCompile('com.netflix.nebula:nebula-test:2.2.+') {
         exclude group: 'org.codehaus.groovy'
     }
 }
 
-createWrapper.gradleVersion = '2.0'
+createWrapper.gradleVersion = '2.2.1'
