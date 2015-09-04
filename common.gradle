@@ -33,15 +33,6 @@ pluginBundle {
     vcsUrl = "https://github.com/nebula-plugins/${project.name}.git"
     description = project.description
 
-    plugins {
-        dependencyLock {
-            id = 'nebula.dependency-lock'
-            displayName = 'Gradle Aggregate Javadocs plugin'
-            description = project.description
-            tags = ['nebula', 'dependencies', 'lock']
-        }
-    }
-
     mavenCoordinates {
         groupId = project.group
         artifactId = project.name
