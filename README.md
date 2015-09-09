@@ -1,4 +1,6 @@
 ### Nebula Core
+
+[![Join the chat at https://gitter.im/nebula-plugins/nebula-core](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nebula-plugins/nebula-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 This specific project holds some "helper" classes for testing and interacting with Gradle. It's not meant to get too big, 
 but should serve as a central place for all plugins. This project should have no dependency and not contain any specific
 plugins.
