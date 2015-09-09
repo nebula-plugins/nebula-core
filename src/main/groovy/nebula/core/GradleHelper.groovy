@@ -12,7 +12,7 @@ import org.gradle.api.internal.artifacts.configurations.DetachedConfigurationsPr
 import org.gradle.api.internal.artifacts.ivyservice.DefaultConfigurationResolver
 import org.gradle.api.internal.artifacts.ivyservice.resolutionstrategy.DefaultResolutionStrategy
 import org.gradle.api.internal.project.AbstractProject
-import org.gradle.listener.BroadcastDispatch
+import org.gradle.internal.event.BroadcastDispatch
 import org.gradle.listener.ClosureBackedMethodInvocationDispatch
 import org.gradle.messaging.dispatch.Dispatch
 import org.gradle.messaging.dispatch.MethodInvocation

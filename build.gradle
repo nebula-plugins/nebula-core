@@ -1,11 +1,22 @@
-buildscript {
-    repositories { jcenter() }
-    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:2.0.+' }
+buildscript { repositories { jcenter() } }
+
+plugins {
+    id 'groovy'
+    id 'idea'
+    id 'jacoco'
+    id 'nebula.info' version '2.2.4'
+    id 'nebula.contacts' version '2.2.0'
+    id 'nebula.maven-publish' version '4.0.1'
+    id 'nebula.nebula-release' version '3.0.0'
+    id 'nebula.nebula-bintray' version '3.1.0'
+    id 'nebula.javadoc-jar' version '4.0.1'
+    id 'nebula.source-jar' version '4.0.1'
+    id 'nebula.maven-apache-license' version '4.0.1'
+    id 'com.gradle.plugin-publish' version '0.9.1'
+    id 'com.github.kt3k.coveralls' version '2.4.0'
 }
 
 description 'Common classes that plugins might need'
-apply plugin: 'nebula-plugin' // applying to even nebula-core since it had 99% of the characterizes of a nebula-plugin
-apply plugin: 'idea'
 
 contacts {
     'justin@halfempty.org' {
@@ -14,11 +25,8 @@ contacts {
     }
 }
 
+apply from: 'common.gradle'
+
 dependencies {
     compile 'org.apache.commons:commons-lang3:3.2.1'
-    testCompile('com.netflix.nebula:nebula-test:2.2.+') {
-        exclude group: 'org.codehaus.groovy'
-    }
 }
-
-createWrapper.gradleVersion = '2.2.1'
