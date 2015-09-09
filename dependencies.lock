@@ -1,4 +1,0 @@
-{
-  "com.netflix.nebula:nebula-test": { "locked": "2.2.0", "requested": "2.2.+" },
-  "org.apache.commons:commons-lang3": { "locked": "3.2.1", "requested": "3.2.1" }
-}
