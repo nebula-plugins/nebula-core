@@ -32,6 +32,10 @@ jacocoTestReport {
     }
 }
 
+tasks.withType(Test) { task ->
+    jacocoTestReport.executionData += files("$buildDir/jacoco/${task.name}.exec")
+}
+
 pluginBundle {
     website = "https://github.com/nebula-plugins/${project.name}"
     vcsUrl = "https://github.com/nebula-plugins/${project.name}.git"
