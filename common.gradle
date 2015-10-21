@@ -9,7 +9,7 @@ group = 'com.netflix.nebula'
 dependencies {
     compile localGroovy()
     compile gradleApi()
-    testCompile('com.netflix.nebula:nebula-test:3.0.0') {
+    testCompile('com.netflix.nebula:nebula-test:4.0.0') {
         exclude group: 'org.codehaus.groovy'
     }
 }
