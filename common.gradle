@@ -34,18 +34,6 @@ jacocoTestReport {
 
 tasks.withType(Test) { task ->
     jacocoTestReport.executionData += files("$buildDir/jacoco/${task.name}.exec")
-
-    testLogging {
-        events "failed"
-        exceptionFormat "short"
-
-        debug {
-            events "started", "skipped", "failed"
-            exceptionFormat "full"
-        }
-
-        info.events = ["failed", "skipped"]
-    }
 }
 
 pluginBundle {
