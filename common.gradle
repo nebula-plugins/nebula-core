@@ -50,3 +50,18 @@ pluginBundle {
 def assertHasPlugin(String id) {
     assert plugins.findPlugin(id) : "The ${id} plugin must be installed!"
 }
+
+project.tasks.withType(com.jfrog.bintray.gradle.BintrayUploadTask) { Task task ->
+    project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+        task.onlyIf {
+            graph.hasTask(':final') || graph.hasTask(':candidate')
+        }
+    }
+}
+project.tasks.withType(org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask) { Task task ->
+    project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+        task.onlyIf {
+            graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
+        }
+    }
+}
