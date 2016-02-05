@@ -51,19 +51,12 @@ def assertHasPlugin(String id) {
     assert plugins.findPlugin(id) : "The ${id} plugin must be installed!"
 }
 
-import com.jfrog.bintray.gradle.BintrayUploadTask
-import org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask
-
 project.tasks.withType(BintrayUploadTask) { Task task ->
     project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-        task.onlyIf {
+        project.tasks.bintrayUpload.onlyIf {
             graph.hasTask(':final') || graph.hasTask(':candidate')
         }
-    }
-}
-project.tasks.withType(BuildInfoBaseTask) { Task task ->
-    project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-        task.onlyIf {
+        project.tasks.artifactoryPublish.onlyIf {
             graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
         }
     }
