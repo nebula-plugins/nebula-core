@@ -51,13 +51,11 @@ def assertHasPlugin(String id) {
     assert plugins.findPlugin(id) : "The ${id} plugin must be installed!"
 }
 
-project.tasks.withType(BintrayUploadTask) { Task task ->
-    project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-        project.tasks.bintrayUpload.onlyIf {
-            graph.hasTask(':final') || graph.hasTask(':candidate')
-        }
-        project.tasks.artifactoryPublish.onlyIf {
-            graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
-        }
+project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+    project.tasks.bintrayUpload.onlyIf {
+        graph.hasTask(':final') || graph.hasTask(':candidate')
+    }
+    project.tasks.artifactoryPublish.onlyIf {
+        graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
     }
 }
