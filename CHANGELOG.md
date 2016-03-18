@@ -1,3 +1,8 @@
+3.1.0 / 2016-3-18
+===================
+
+* Switch Download task to httpclient, so 302s are followed
+
 2.2.0 / 2015-1-30
 ===================
 
