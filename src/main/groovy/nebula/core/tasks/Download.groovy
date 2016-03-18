@@ -1,5 +1,11 @@
 package nebula.core.tasks
 
+import org.apache.http.HttpStatus
+import org.apache.http.client.config.RequestConfig
+import org.apache.http.client.methods.CloseableHttpResponse
+import org.apache.http.client.methods.HttpGet
+import org.apache.http.impl.client.CloseableHttpClient
+import org.apache.http.impl.client.HttpClients
 import org.gradle.api.internal.ConventionTask
 import org.gradle.api.internal.file.TemporaryFileProvider
 import org.gradle.api.tasks.Input
@@ -16,29 +22,31 @@ import javax.inject.Inject
  *
  * <pre>
  *     import netflix.nebula.*
- *     task download(type: Download) {
- *         downloadBase = 'http://localhost'
+ *     task download(type: Download) {*         downloadBase = 'http://localhost'
  *         downloadFileName = 'file.zip'
- *     }
- *     task unzip(type: Unzip) {
- *         from(tasks.download)
- *     }
- * </pre>
+ *}*     task unzip(type: Unzip) {*         from(tasks.download)
+ *}* </pre>
  */
 class Download extends ConventionTask {
-    @Input @Optional
+    @Input
+    @Optional
     String downloadBase
 
-    @Input @Optional
+    @Input
+    @Optional
     String downloadFileName
 
-    @Input @Optional
+    @Input
+    @Optional
     File destinationDir
 
     @OutputFile
     File destinationFile
 
     String downloadUrl
+
+    private CloseableHttpClient httpClient
+    private File cacheDir
 
     @Inject
     Download(TemporaryFileProvider temporaryFileProvider) {
@@ -50,25 +58,36 @@ class Download extends ConventionTask {
         }
         conventionMapping('destinationFile') {
             destinationFile = (getDownloadFileName()) ?
-                new File(getDestinationDir(), getDownloadFileName()) :
-                temporaryFileProvider.createTemporaryFile('downloaded', 'part')
+                    new File(getDestinationDir(), getDownloadFileName()) :
+                    temporaryFileProvider.createTemporaryFile('downloaded', 'part')
             return destinationFile
         }
         conventionMapping('downloadUrl') {
             "${getDownloadBase()}/${getDownloadFileName()}".toString() // Can't return a GString
         }
-//        outputs.upToDateWhen {
-//            // TODO Use httpclient or such to calculate up-to-date
-//        }
+
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(30000)
+                .setSocketTimeout(30000)
+                .build()
+
+        httpClient = HttpClients.custom()
+                .setDefaultRequestConfig(requestConfig)
+                .build()
     }
 
     @TaskAction
     doDownload() {
-        // TODO Use a smarter download library like httpclient
-        // TODO Show progress markers
         logger.info("Downloading ${getDownloadUrl()} to ${getDestinationFile()}")
-        getDestinationFile().bytes = new URL(getDownloadUrl()).bytes
-        logger.info("Downloaded ${getDestinationFile().size()} bytes")
+        def httpGet = new HttpGet(getDownloadUrl())
+        CloseableHttpResponse response = httpClient.execute(httpGet)
+        if (response.statusLine.statusCode != HttpStatus.SC_OK) {
+            throw new IllegalStateException("Download of ${getDownloadUrl()} failed: $response.statusLine")
+        }
+        try {
+            response.entity.writeTo(new FileOutputStream(getDestinationFile()))
+        } finally {
+            response.close()
+        }
     }
-
 }

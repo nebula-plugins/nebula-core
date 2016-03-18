@@ -1,0 +1,70 @@
+{
+    "compile": {
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.4",
+            "requested": "latest.release"
+        },
+        "org.apache.httpcomponents:httpclient-cache": {
+            "locked": "4.5.2",
+            "requested": "latest.release"
+        }
+    },
+    "default": {
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.4",
+            "requested": "latest.release"
+        },
+        "org.apache.httpcomponents:httpclient-cache": {
+            "locked": "4.5.2",
+            "requested": "latest.release"
+        }
+    },
+    "jacocoAgent": {
+        "org.jacoco:org.jacoco.agent": {
+            "locked": "0.7.1.201405082137"
+        }
+    },
+    "jacocoAnt": {
+        "org.jacoco:org.jacoco.ant": {
+            "locked": "0.7.1.201405082137"
+        }
+    },
+    "runtime": {
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.4",
+            "requested": "latest.release"
+        },
+        "org.apache.httpcomponents:httpclient-cache": {
+            "locked": "4.5.2",
+            "requested": "latest.release"
+        }
+    },
+    "testCompile": {
+        "com.netflix.nebula:nebula-test": {
+            "locked": "4.0.0",
+            "requested": "4.0.0"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.4",
+            "requested": "latest.release"
+        },
+        "org.apache.httpcomponents:httpclient-cache": {
+            "locked": "4.5.2",
+            "requested": "latest.release"
+        }
+    },
+    "testRuntime": {
+        "com.netflix.nebula:nebula-test": {
+            "locked": "4.0.0",
+            "requested": "4.0.0"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.4",
+            "requested": "latest.release"
+        },
+        "org.apache.httpcomponents:httpclient-cache": {
+            "locked": "4.5.2",
+            "requested": "latest.release"
+        }
+    }
+}
