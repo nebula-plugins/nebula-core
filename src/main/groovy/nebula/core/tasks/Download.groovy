@@ -46,7 +46,6 @@ class Download extends ConventionTask {
     String downloadUrl
 
     private CloseableHttpClient httpClient
-    private File cacheDir
 
     @Inject
     Download(TemporaryFileProvider temporaryFileProvider) {
