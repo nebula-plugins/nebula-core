@@ -1,5 +1,6 @@
 ### Nebula Core
 
+![Support Status](https://img.shields.io/badge/Nebula-internal-lightgray.svg)
 [![Build Status](https://travis-ci.org/nebula-plugins/nebula-core.svg?branch=master)](https://travis-ci.org/nebula-plugins/nebula-core)
 [![Coverage Status](https://coveralls.io/repos/nebula-plugins/nebula-core/badge.svg?branch=master&service=github)](https://coveralls.io/github/nebula-plugins/nebula-core?branch=master)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nebula-plugins/nebula-core?utm_source=badgeutm_medium=badgeutm_campaign=pr-badge)
