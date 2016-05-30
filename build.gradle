@@ -17,8 +17,7 @@
 buildscript { repositories { jcenter() } } // Some plugin dependencies (namely JFrog) are not in Maven Central
 
 plugins {
-    id 'nebula.plugin-plugin' version '4.13.0'
-    id 'nebula.dependency-lock' version '4.3.0'
+    id 'nebula.plugin-plugin' version '4.14.0'
 }
 
 description 'Common classes that plugins might need'
