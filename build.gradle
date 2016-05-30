@@ -30,19 +30,7 @@ contacts {
     }
 }
 
-configurations {
-    gradleApi
-}
-
 dependencies {
     compile 'org.apache.commons:commons-lang3:latest.release'
     compile 'org.apache.httpcomponents:httpclient-cache:latest.release'
-
-    gradleApi gradleApi()
-    gradleApi localGroovy()
-}
-
-sourceSets.each {
-    it.compileClasspath = it.compileClasspath - configurations.gradleApi + configurations.gradleApi
-    it.runtimeClasspath = it.runtimeClasspath - configurations.gradleApi + configurations.gradleApi
 }
