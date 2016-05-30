@@ -14,8 +14,8 @@ import org.gradle.api.internal.artifacts.ivyservice.resolutionstrategy.DefaultRe
 import org.gradle.api.internal.project.AbstractProject
 import org.gradle.internal.event.BroadcastDispatch
 import org.gradle.listener.ClosureBackedMethodInvocationDispatch
-import org.gradle.internal.dispatch.Dispatch
-import org.gradle.internal.dispatch.MethodInvocation
+import org.gradle.messaging.dispatch.Dispatch
+import org.gradle.messaging.dispatch.MethodInvocation
 
 /**
  * Utility methods to dive into Gradle internals, if needed.

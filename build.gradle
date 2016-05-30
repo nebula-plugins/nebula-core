@@ -30,7 +30,6 @@ contacts {
 }
 
 dependencies {
-    compile 'com.google.guava:guava:latest.release'
     compile 'org.apache.commons:commons-lang3:latest.release'
     compile 'org.apache.httpcomponents:httpclient-cache:latest.release'
 }
