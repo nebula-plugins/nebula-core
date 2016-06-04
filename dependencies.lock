@@ -1,5 +1,9 @@
 {
     "compile": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "org.apache.commons:commons-lang3": {
             "locked": "3.4",
             "requested": "latest.release"
@@ -10,6 +14,10 @@
         }
     },
     "compileClasspath": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "org.apache.commons:commons-lang3": {
             "locked": "3.4",
             "requested": "latest.release"
@@ -20,6 +28,10 @@
         }
     },
     "compileOnly": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "org.apache.commons:commons-lang3": {
             "locked": "3.4",
             "requested": "latest.release"
@@ -30,6 +42,10 @@
         }
     },
     "default": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "org.apache.commons:commons-lang3": {
             "locked": "3.4",
             "requested": "latest.release"
@@ -50,6 +66,10 @@
         }
     },
     "runtime": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "org.apache.commons:commons-lang3": {
             "locked": "3.4",
             "requested": "latest.release"
@@ -60,6 +80,10 @@
         }
     },
     "testCompile": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "com.netflix.nebula:nebula-test": {
             "locked": "4.2.0",
             "requested": "4.2.0"
@@ -74,6 +98,10 @@
         }
     },
     "testCompileClasspath": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "com.netflix.nebula:nebula-test": {
             "locked": "4.2.0",
             "requested": "4.2.0"
@@ -88,6 +116,10 @@
         }
     },
     "testCompileOnly": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "com.netflix.nebula:nebula-test": {
             "locked": "4.2.0",
             "requested": "4.2.0"
@@ -102,6 +134,10 @@
         }
     },
     "testRuntime": {
+        "com.google.guava:guava": {
+            "locked": "19.0",
+            "requested": "latest.release"
+        },
         "com.netflix.nebula:nebula-test": {
             "locked": "4.2.0",
             "requested": "4.2.0"

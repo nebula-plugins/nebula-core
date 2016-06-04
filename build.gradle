@@ -19,6 +19,8 @@ plugins {
     id 'nebula.plugin-plugin' version '4.18.0'
 }
 
+group 'com.netflix.nebula.core'
+
 description 'Common classes that plugins might need'
 
 contacts {
@@ -29,6 +31,7 @@ contacts {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:latest.release'
     compile 'org.apache.commons:commons-lang3:latest.release'
     compile 'org.apache.httpcomponents:httpclient-cache:latest.release'
 }

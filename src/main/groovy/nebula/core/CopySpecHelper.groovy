@@ -1,6 +1,6 @@
 package nebula.core
 
-import org.apache.commons.lang.reflect.FieldUtils
+import org.apache.commons.lang3.reflect.FieldUtils
 import org.gradle.api.Action
 import org.gradle.api.internal.file.CopyActionProcessingStreamAction
 import org.gradle.api.internal.file.copy.*
@@ -10,7 +10,6 @@ import org.gradle.internal.reflect.DirectInstantiator
 import org.gradle.internal.reflect.Instantiator
 
 class CopySpecHelper {
-
     static visitCopySpec(CopySpecInternal copySpec, Closure closure) {
         Instantiator instantiator = new DirectInstantiator()
         //FileSystem fileSystem = new GenericFileSystem(new EmptyChmod(), new FallbackStat(), new FallbackSymlink())
@@ -46,7 +45,7 @@ class CopySpecHelper {
     static CopySpecInternal findCopySpec(CopySpecInternal delegateCopySpec, Closure<Boolean> closure) {
         def foundCsi = null
         visitAllCopySpecs(delegateCopySpec) { CopySpecInternal csi, FileCopyDetailsInternal details ->
-            if(foundCsi==null && closure.call(csi, details)) {
+            if (foundCsi == null && closure.call(csi, details)) {
                 foundCsi = csi
             }
         }
