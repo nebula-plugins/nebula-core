@@ -5,14 +5,14 @@ import org.gradle.api.Namer
 import org.gradle.api.Project
 import org.gradle.api.internal.DynamicPropertyNamer
 import org.gradle.api.internal.FactoryNamedDomainObjectContainer
-import org.gradle.api.internal.project.AbstractProject
+import org.gradle.api.internal.project.ProjectInternal
 import org.gradle.internal.reflect.Instantiator
 import org.gradle.util.ConfigureUtil
 
 public class NamedContainerProperOrder<T> extends FactoryNamedDomainObjectContainer<T> {
 
     public static <C> NamedContainerProperOrder<C> container(Project p, Class<C> type) {
-        Instantiator instantiator = ((AbstractProject) p).getServices().get(Instantiator.class);
+        Instantiator instantiator = ((ProjectInternal) p).getServices().get(Instantiator.class);
         return instantiator.newInstance(NamedContainerProperOrder.class, type, instantiator, new DynamicPropertyNamer());
     }
 

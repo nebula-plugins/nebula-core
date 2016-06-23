@@ -11,24 +11,23 @@ import org.gradle.api.internal.artifacts.configurations.DefaultConfiguration
 import org.gradle.api.internal.artifacts.configurations.DetachedConfigurationsProvider
 import org.gradle.api.internal.artifacts.ivyservice.DefaultConfigurationResolver
 import org.gradle.api.internal.artifacts.ivyservice.resolutionstrategy.DefaultResolutionStrategy
-import org.gradle.api.internal.project.AbstractProject
-import org.gradle.internal.event.BroadcastDispatch
-import org.gradle.listener.ClosureBackedMethodInvocationDispatch
+import org.gradle.api.internal.project.ProjectInternal
 import org.gradle.internal.dispatch.Dispatch
 import org.gradle.internal.dispatch.MethodInvocation
+import org.gradle.internal.event.BroadcastDispatch
+import org.gradle.listener.ClosureBackedMethodInvocationDispatch
 
 /**
  * Utility methods to dive into Gradle internals, if needed.
  */
 class GradleHelper {
+    def ProjectInternal project
 
-    def AbstractProject project
-
-    GradleHelper(AbstractProject project) {
+    GradleHelper(ProjectInternal project) {
         this.project = project
     }
 
-    def static BroadcastDispatch<ProjectEvaluationListener> getProjectEvaluationListeners(AbstractProject project) {
+    def static BroadcastDispatch<ProjectEvaluationListener> getProjectEvaluationListeners(ProjectInternal project) {
         new GradleHelper(project).getProjectEvaluationListeners()
     }
 
@@ -45,7 +44,7 @@ class GradleHelper {
     }
 
     def beforeEvaluate(Closure beforeEvaluateClosure) {
-        BroadcastDispatch<ProjectEvaluationListener> broadcast = getProjectEvaluationListeners( (AbstractProject) project)
+        BroadcastDispatch<ProjectEvaluationListener> broadcast = getProjectEvaluationListeners( (ProjectInternal) project)
 
         final String methodName = 'afterEvaluate'
         Dispatch<MethodInvocation> invocation =  new ClosureBackedMethodInvocationDispatch(methodName, beforeEvaluateClosure)
