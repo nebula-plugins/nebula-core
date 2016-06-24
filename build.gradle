@@ -29,7 +29,7 @@ contacts {
 }
 
 dependencies {
-    compile 'com.google.guava:guava:latest.release'
-    compile 'org.apache.commons:commons-lang3:latest.release'
-    compile 'org.apache.httpcomponents:httpclient-cache:latest.release'
+    compile 'com.google.guava:guava:19.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.apache.httpcomponents:httpclient-cache:4.5.2'
 }
