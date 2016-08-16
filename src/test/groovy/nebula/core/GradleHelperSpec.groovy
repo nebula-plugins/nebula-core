@@ -1,16 +1,14 @@
 package nebula.core
 
 import com.google.common.io.Files
-import org.gradle.api.internal.project.AbstractProject
+import org.gradle.api.internal.project.DefaultProject
 import spock.lang.Specification
-
-import java.util.jar.Manifest
 
 class GradleHelperSpec extends Specification {
     GradleHelper gradleHelper
 
     def setup() {
-        AbstractProject project = Stub {
+        def project = Stub(DefaultProject) {
             getBuildDir() >> Files.createTempDir()
         }
         project.getBuildDir() >> Files.createTempDir()
