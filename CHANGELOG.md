@@ -1,3 +1,11 @@
+5.0.0 / 2018-01-03
+==================
+
+* Remove tasks that are better handled elsewhere
+    * Untar can be handled with built in `tarfile`
+    * Unzip can be handled with built in `zipfile`
+    * Download there are 2 or 3 better plugins in the wild
+
 3.1.0 / 2016-3-18
 ===================
 
