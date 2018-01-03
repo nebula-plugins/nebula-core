@@ -21,40 +21,10 @@ import org.gradle.listener.ClosureBackedMethodInvocationDispatch
  * Utility methods to dive into Gradle internals, if needed.
  */
 class GradleHelper {
-    def ProjectInternal project
+    ProjectInternal project
 
     GradleHelper(ProjectInternal project) {
         this.project = project
-    }
-
-    def static BroadcastDispatch<ProjectEvaluationListener> getProjectEvaluationListeners(ProjectInternal project) {
-        new GradleHelper(project).getProjectEvaluationListeners()
-    }
-
-    def BroadcastDispatch<ProjectEvaluationListener> getProjectEvaluationListeners() {
-        ProjectEvaluationListener listener = project.getProjectEvaluationBroadcaster();
-
-        def /* org.gradle.messaging.dispatch.ProxyDispatchAdapter.DispatchingInvocationHandler */ h = ((java.lang.reflect.Proxy) listener).h
-        BroadcastDispatch<ProjectEvaluationListener> dispatcher = h.dispatch
-        return dispatcher
-    }
-
-    def static beforeEvaluate(Project project, Closure beforeEvaluateClosure) {
-        new GradleHelper(project).beforeEvaluate(beforeEvaluateClosure)
-    }
-
-    def beforeEvaluate(Closure beforeEvaluateClosure) {
-        BroadcastDispatch<ProjectEvaluationListener> broadcast = getProjectEvaluationListeners( (ProjectInternal) project)
-
-        final String methodName = 'afterEvaluate'
-        Dispatch<MethodInvocation> invocation =  new ClosureBackedMethodInvocationDispatch(methodName, beforeEvaluateClosure)
-
-        Map<Object, Dispatch<MethodInvocation>> prependedHandlers = new LinkedHashMap<Object, Dispatch<MethodInvocation>>();
-        prependedHandlers.put(invocation, invocation);
-        prependedHandlers.putAll( broadcast.handlers )
-
-        broadcast.handlers.clear()
-        broadcast.handlers.putAll(prependedHandlers)
     }
 
     def getTempDir(String taskBaseName) {
